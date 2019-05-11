@@ -1,10 +1,8 @@
-const canv = document.getElementById('canvas'),
-ctx = canv.getContext('2d');
 
-const P = document.getElementById('p');
+//const P = document.getElementById('p');
 
-canv.width = window.innerWidth;
-canv.height = window.innerHeight;
+//canv.width = window.innerWidth;
+//canv.height = window.innerHeight;
 
 
 
@@ -29,7 +27,7 @@ if(navigator.webkitGetUserMedia!=null) {
   ); 
 }
 
-
+/*
   		if ('ondeviceorientationabsolute' in window) { 
 
 		
@@ -53,4 +51,4 @@ if(navigator.webkitGetUserMedia!=null) {
     
 
 
-
+*/
