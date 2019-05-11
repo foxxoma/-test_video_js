@@ -3,3 +3,7 @@
 	margin: 0;
 }
 
+video {
+	width: 400px;
+	height: 400px;
+}
