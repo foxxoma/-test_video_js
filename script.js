@@ -40,7 +40,7 @@ function snapshot(){
 
 		P.textContent = event.alpha;
 		} 
-
+	}
 		else if ('ondeviceorientation' in window) { 
 			
 			window.ondeviceorientationabsolute = function(event) { 
@@ -48,6 +48,7 @@ function snapshot(){
 		P.textContent = event.alpha;
 
 		}
+	}
 
 		else{
 		P.textContent = "f2";
