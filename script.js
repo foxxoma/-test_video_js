@@ -3,7 +3,8 @@ if(navigator.webkitGetUserMedia!=null) {
     video:true, 
     audio:true 
   }; 
-  
+  navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
+  window.URL.createObjectURL = window.URL.createObjectURL || window.URL.webkitCreateObjectURL || window.URL.mozCreateObjectURL || window.URL.msCreateObjectURL;
   // запрашиваем доступ к веб-камере
   navigator.webkitGetUserMedia(options, 
     function(stream) { 
