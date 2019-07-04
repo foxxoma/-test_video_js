@@ -25,8 +25,7 @@ if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
     });
 }
 
-video.width = window.innerHeight;
-video.height = window.innerHeight;
+
 
 
 if ('ondeviceorientationabsolute' in window) { 
@@ -34,10 +33,6 @@ if ('ondeviceorientationabsolute' in window) {
 			window.ondeviceorientationabsolute = function(event) {
 				rad = event.alpha;
 				cornerAz = 360 - event.alpha;
-				
-
- 
-
 			};
 		
 		} 
@@ -49,10 +44,8 @@ if ('ondeviceorientationabsolute' in window) {
        			rad = event.alpha;
        			cornerAz = 360 - event.alpha;
 
+			};
 		
-		};
-		
-
 		}
 
 		else{
