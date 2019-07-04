@@ -34,26 +34,9 @@ if ('ondeviceorientationabsolute' in window) {
 			window.ondeviceorientationabsolute = function(event) {
 				rad = event.alpha;
 				cornerAz = 360 - event.alpha;
-				//rad = rad.toFixed(0);
-       			let a = rad * (Math.PI/180);
+				
 
-        
-        north.clearRect(-70, -70, 80, 80);
-        north.rotate(-1*aC);
-		north.rotate(a);
-
-		north.beginPath();
-		north.fillStyle = '#ff0000'	
-		north.arc(0, 0, 3, 0, Math.PI *2);
-		north.fill();
-
-		north.beginPath();
-		north.fillStyle = '#0000ff'	
-		north.arc(0, -60, 5, 0, Math.PI *2);
-		north.fill();
-
-		aC = a;
-		
+ 
 
 			};
 		
@@ -65,25 +48,7 @@ if ('ondeviceorientationabsolute' in window) {
 
        			rad = event.alpha;
        			cornerAz = 360 - event.alpha;
-				//rad = rad.toFixed(0);
-       			let a = rad * (Math.PI/180);
 
-        				
-        north.clearRect(-70, -70, 80, 80);
-		north.rotate(-1*aC);
-		north.rotate(a);
-
-		north.beginPath();
-		north.fillStyle = '#ff0000'	
-		north.arc(0, 0, 3, 0, Math.PI *2);
-		north.fill();
-
-		north.beginPath();
-		north.fillStyle = '#0000ff'	
-		north.arc(0, -60, 5, 0, Math.PI *2);
-		north.fill();
-		
-		aC = a;
 		
 		};
 		
