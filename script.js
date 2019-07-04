@@ -1,3 +1,16 @@
+var lat;
+var lng;
+let aC;
+let rad;
+var cornerAz;
+navigator.geolocation.getCurrentPosition(function(position) {
+
+        // Текущие координаты.
+        lat = position.coords.latitude;
+       lng = position.coords.longitude;
+       
+
+ });
 
 var video = document.getElementById('video');
 var front = false;
@@ -10,4 +23,171 @@ if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
         video.srcObject = stream;
         video.play();
     });
+}
+
+video.width = window.innerHeight;
+video.height = window.innerHeight;
+
+
+if ('ondeviceorientationabsolute' in window) { 
+		
+			window.ondeviceorientationabsolute = function(event) {
+				rad = event.alpha;
+				cornerAz = 360 - event.alpha;
+				//rad = rad.toFixed(0);
+       			let a = rad * (Math.PI/180);
+
+        
+        north.clearRect(-70, -70, 80, 80);
+        north.rotate(-1*aC);
+		north.rotate(a);
+
+		north.beginPath();
+		north.fillStyle = '#ff0000'	
+		north.arc(0, 0, 3, 0, Math.PI *2);
+		north.fill();
+
+		north.beginPath();
+		north.fillStyle = '#0000ff'	
+		north.arc(0, -60, 5, 0, Math.PI *2);
+		north.fill();
+
+		aC = a;
+		
+
+			};
+		
+		} 
+
+		else if ('ondeviceorientation' in window) { 
+			
+			window.ondeviceorientationabsolute = function(event) {
+
+       			rad = event.alpha;
+       			cornerAz = 360 - event.alpha;
+				//rad = rad.toFixed(0);
+       			let a = rad * (Math.PI/180);
+
+        				
+        north.clearRect(-70, -70, 80, 80);
+		north.rotate(-1*aC);
+		north.rotate(a);
+
+		north.beginPath();
+		north.fillStyle = '#ff0000'	
+		north.arc(0, 0, 3, 0, Math.PI *2);
+		north.fill();
+
+		north.beginPath();
+		north.fillStyle = '#0000ff'	
+		north.arc(0, -60, 5, 0, Math.PI *2);
+		north.fill();
+		
+		aC = a;
+		
+		};
+		
+
+		}
+
+		else{
+				alert("f2");
+		}
+
+let  MyM, MxM, f;
+
+
+MyM = [42.9391, 42.9034];
+MxM = [44.59806, 43.97759];
+
+
+setInterval(function() {
+	for ( f = 0; f < MyM.length; f++){
+	checkNavigation(MxM[f], MyM[f], lat, lng, cornerAz);
+}
+}, 10);
+    
+
+
+function checkNavigation(xM, yM, y, x, az){
+	let corner1, corner2;
+	let a, b, c;
+	b = x;
+	c = 90 - y;
+	a = Math.sqrt( Math.pow(b,2) + Math.pow(c,2) );
+	corner1 = Math.acos( (Math.pow(a,2) + Math.pow(c,2) - Math.pow(b,2)) / (2*a*c)) *(180/Math.PI);
+	
+let aM, bM, cM;
+
+
+let s;
+
+	
+if (yM > y && xM > x){
+
+
+aM = yM - y;
+bM = xM - x;
+cM = Math.sqrt( Math.pow(bM,2) + Math.pow(aM,2) );
+corner2 = Math.acos( (Math.pow(aM,2) + Math.pow(cM,2) - Math.pow(bM,2)) / (2*aM*cM)) *(180/Math.PI);
+
+ s = corner1 + corner2;
+s = s.toFixed(0);
+az = az.toFixed(0);
+}
+
+else if (yM < y && xM > x){
+
+
+bM = y - yM;
+aM = xM - x;
+cM = Math.sqrt( Math.pow(bM,2) + Math.pow(aM,2) );
+corner2 = Math.acos( (Math.pow(aM,2) + Math.pow(cM,2) - Math.pow(bM,2)) / (2*aM*cM)) *(180/Math.PI);
+
+ s = corner1 + 90 + corner2;
+s = s.toFixed(0);
+az = az.toFixed(0);
+}
+
+else if (yM < y && xM < x){
+
+
+aM = y - yM;
+bM = x - xM;
+cM = Math.sqrt( Math.pow(bM,2) + Math.pow(aM,2) );
+corner2 = Math.acos( (Math.pow(aM,2) + Math.pow(cM,2) - Math.pow(bM,2)) / (2*aM*cM)) *(180/Math.PI);
+
+ s = corner1 + 90 + 90 + corner2;
+s = s.toFixed(0);
+az = az.toFixed(0);
+}
+
+else if (yM > y && xM < x){
+
+
+bM = yM - y;
+aM = x - xM;
+cM = Math.sqrt( Math.pow(bM,2) + Math.pow(aM,2) );
+corner2 = Math.acos( (Math.pow(aM,2) + Math.pow(cM,2) - Math.pow(bM,2)) / (2*aM*cM)) *(180/Math.PI);
+
+ s = corner1 + 90 + 90 + 90 + corner2;
+
+if(s > 360) 
+{
+	s = s - 360;
+}
+
+s = s.toFixed(0);
+az = az.toFixed(0);
+}
+
+if(az == s && f == 1){
+	alert("1");
+
+}
+else if(az == s && f == 0){
+	alert("0");
+
+}
+
 }
