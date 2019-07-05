@@ -140,12 +140,26 @@ az = az.toFixed(0);
 }
 
 if(az == s && f == 1){
-	alert("1");
+//	alert("1");
 
 }
 else if(az == s && f == 0){
-	alert("0");
+//	alert("0");
 
 }
 
 }
+
+const description = document.getElementById("description");
+const descriptionMenu = document.getElementById("description_menu");
+let Mchek = 0;
+
+
+descriptionMenu.addEventListener('click', function(e){
+if (Mchek == 0){
+description.style.display = "table"; Mchek = 1;
+}
+else {
+ description.style.display = "none"; Mchek = 0;
+}
+ });
