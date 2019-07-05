@@ -4,12 +4,9 @@
 	color: #fff;
 }
 
-video {
-	height: 100%;
-	width: 100%;
-	bottom: 0%;
-	border:1px solid #000;
-}
+
+	
+
 .content {
 	position: absolute;
 	text-align: center;
@@ -56,3 +53,31 @@ video {
 	background: rgba(0,0,0,65%);
 }
 
+#trailer {
+				position: fixed;
+				top: 0; right: 0; bottom: 0; left: 0;
+				overflow: hidden;
+			}
+			#trailer > video {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+			}
+			/* 1. No object-fit support: */
+			@media (min-aspect-ratio: 16/9) {
+				#trailer > video { height: 300%; top: -100%; }
+			}
+			@media (max-aspect-ratio: 16/9) {
+				#trailer > video { width: 300%; left: -100%; }
+			}
+			/* 2. If supporting object-fit, overriding (1): */
+			@supports (object-fit: cover) {
+				#trailer > video {
+					top: 0; left: 0;
+					width: 100%; height: 100%;
+					object-fit: cover;
+					
+				}
+			}
