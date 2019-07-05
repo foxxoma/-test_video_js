@@ -35,8 +35,8 @@ video {
 	position: absolute;
 	right: 0%;
 	bottom: 0%;
-	width: 30%;
-	height: 40%;
+	width: 40%;
+	height: 20%;
 	background: rgba(0,0,0,65%);
 	display: none;
 }
