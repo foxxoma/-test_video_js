@@ -64,10 +64,10 @@ m2=[42.9034,43.97759,"m2","m2-dfdggfgfgfgfgfg"]];
 
 
 setInterval(function() {
-	for ( f = 0; f < 2; f++){
+	for ( f = 0; f < MyM.length; f++){
 	checkNavigation(MyM[f][1], MyM[f][0], lat, lng, cornerAz);
 }
-}, 10);
+}, 15);
     
 
 
@@ -143,10 +143,15 @@ s = s.toFixed(0);
 az = az.toFixed(0);
 }
 
-if(az == s){
-descriptionH.textContent = MyM[f][2];
-descriptionText.textContent = MyM[f][3];
-nameMo.textContent = MyM[f][2];
+if(az == s && f == 0 ){
+descriptionH.textContent = MyM[0][2];
+descriptionText.textContent = MyM[0][3];
+nameMo.textContent = MyM[0][2];
+}
+else if(az == s && f == 1 ){
+descriptionH.textContent = MyM[1][2];
+descriptionText.textContent = MyM[1][3];
+nameMo.textContent = MyM[1][2];
 }
 else {
 	descriptionH.textContent = '*****';
