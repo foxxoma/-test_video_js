@@ -59,12 +59,12 @@ let  MyM, MxM, f;
 
 
 MyM = [m1 = [42.9391,44.59806,"m1","m1-dfdggfgfgfgfgfg"],
-m2=[42.9034,43.97759,"m1","m1-dfdggfgfgfgfgfg"]];
+m2=[42.9034,43.97759,"m2","m2-dfdggfgfgfgfgfg"]];
 
 
 
 setInterval(function() {
-	for ( f = 0; f < MyM.length; f++){
+	for ( f = 0; f < 2; f++){
 	checkNavigation(MyM[f][1], MyM[f][0], lat, lng, cornerAz);
 }
 }, 10);
