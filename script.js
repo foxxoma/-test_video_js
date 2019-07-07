@@ -58,16 +58,15 @@ if ('ondeviceorientationabsolute' in window) {
 let  MyM, MxM, f;
 
 
-MyM = [m1 = [42.9391,44.59806,"m1","m1-dfdggfgfgfgfgfg"],
-m2=[42.9034,43.97759,"m2","m2-dfdggfgfgfgfgfg"]];
-
+MyM = [42.9391, 42.9034];
+MxM = [44.59806, 43.97759];
 
 
 setInterval(function() {
 	for ( f = 0; f < MyM.length; f++){
-	checkNavigation(MyM[f][1], MyM[f][0], lat, lng, cornerAz);
+	checkNavigation(MxM[f], MyM[f], lat, lng, cornerAz);
 }
-}, 15);
+}, 10);
     
 
 
@@ -143,59 +142,28 @@ s = s.toFixed(0);
 az = az.toFixed(0);
 }
 
-if(az == s && f == 0 ){
-descriptionH.textContent = MyM[0][2];
-descriptionText.textContent = MyM[0][3];
-nameMo.textContent = MyM[0][2];
+if(az == s && f == 1){
+	alert(1);
+descriptionText.TextContent = 'm2-sdfsdfsdfdfdsf';
+descriptionH.TextContent = 'm2';
+nameMo.TextContent = 'm2';
+
 }
-else if(az == s && f == 1 ){
-descriptionH.textContent = MyM[1][2];
-descriptionText.textContent = MyM[1][3];
-nameMo.textContent = MyM[1][2];
-}
-else {
-	descriptionH.textContent = '*****';
-descriptionText.textContent =  '*****';
-nameMo.textContent =  '*****';
-}
+else if(az == s && f == 0){
+	alert(0);
+descriptionText.TextContent = 'm1-sdfsdfsdfdfdsf';
+descriptionH.TextContent = 'm1';
+nameMo.TextContent = 'm1';
 
 
 }
+else{
+descriptionText.TextContent = '*****';
+descriptionH.TextContent = '*****';
+nameMo.TextContent = '*****';
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}
 
 const description = document.getElementById("description");
 const descriptionMenu = document.getElementById("description_menu");
