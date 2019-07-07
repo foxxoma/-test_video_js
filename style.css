@@ -30,17 +30,23 @@
 }
 .description {
 	position: absolute;
+	position: fixed;
 	right: 0%;
-	font-size: 15px;
+	font-size: 18px;
 	bottom: 0%;
-	width: 100%;
-	height: 20%;
+	width: 30%;
+	height: 30%;
 	background: rgba(0,0,0,65%);
 	display: none;
 }
+.description_text {
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,5%);
+}
 
 .tr1{
-	
+	height: 20%;
 	background: rgba(0,0,0,65%);
 	
 	
