@@ -3,6 +3,9 @@ var lng;
 let aC;
 let rad;
 var cornerAz;
+const descriptionText = document.getElementById('description_text');
+const descriptionH = document.getElementById('description_h');
+const nameMo = document.getElementById('name_Mo');
 navigator.geolocation.getCurrentPosition(function(position) {
 
         // Текущие координаты.
@@ -55,13 +58,14 @@ if ('ondeviceorientationabsolute' in window) {
 let  MyM, MxM, f;
 
 
-MyM = [42.9391, 42.9034];
-MxM = [44.59806, 43.97759];
+MyM = [m1 = [42.9391,44.59806,"m1","m1-dfdggfgfgfgfgfg"],
+m2=[42.9034,43.97759,"m1","m1-dfdggfgfgfgfgfg"]];
+
 
 
 setInterval(function() {
 	for ( f = 0; f < MyM.length; f++){
-	checkNavigation(MxM[f], MyM[f], lat, lng, cornerAz);
+	checkNavigation(MyM[f][1], MyM[f][0], lat, lng, cornerAz);
 }
 }, 10);
     
@@ -139,16 +143,49 @@ s = s.toFixed(0);
 az = az.toFixed(0);
 }
 
-if(az == s && f == 1){
-//	alert("1");
-
-}
-else if(az == s && f == 0){
-//	alert("0");
-
+if(az == s){
+descriptionH.textContent = MyM[f][2];
+descriptionText.textContent = MyM[f][3];
+nameMo.textContent = MyM[f][2];
 }
 
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 const description = document.getElementById("description");
 const descriptionMenu = document.getElementById("description_menu");
