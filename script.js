@@ -143,24 +143,24 @@ az = az.toFixed(0);
 }
 
 if(az == s && f == 1){
-	alert(1);
-descriptionText.TextContent = 'm2-sdfsdfsdfdfdsf';
-descriptionH.TextContent = 'm2';
-nameMo.TextContent = 'm2';
+
+descriptionText.textContent = 'm2-sdfsdfsdfdfdsf';
+descriptionH.textContent = 'm2';
+nameMo.textContent = 'm2';
 
 }
 else if(az == s && f == 0){
-	alert(0);
-descriptionText.TextContent = 'm1-sdfsdfsdfdfdsf';
-descriptionH.TextContent = 'm1';
-nameMo.TextContent = 'm1';
+
+descriptionText.textContent = 'm1-sdfsdfsdfdfdsf';
+descriptionH.textContent = 'm1';
+nameMo.textContent = 'm1';
 
 
 }
 else{
-descriptionText.TextContent = '*****';
-descriptionH.TextContent = '*****';
-nameMo.TextContent = '*****';
+descriptionText.textContent = '*****';
+descriptionH.textContent = '*****';
+nameMo.textContent = '*****';
 }
 
 }
