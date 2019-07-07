@@ -143,12 +143,20 @@ s = s.toFixed(0);
 az = az.toFixed(0);
 }
 
-if(az == s){
+if(az >= s){
+	if(az-s < 10){
 descriptionH.textContent = MyM[f][2];
 descriptionText.textContent = MyM[f][3];
 nameMo.textContent = MyM[f][2];
 }
-else {
+}
+
+else if(s - az < 10) {
+descriptionH.textContent = MyM[f][2];
+descriptionText.textContent = MyM[f][3];
+nameMo.textContent = MyM[f][2];}
+
+else{
 	descriptionH.textContent = '*****';
 descriptionText.textContent =  '*****';
 nameMo.textContent =  '*****';
