@@ -65,7 +65,7 @@ MyM = [[42.9034,43.97759,"m1","m1-dfdggfgfgfgfgfg"],
 
 setInterval(function() {
 	for ( f = 0; f < MyM.length; f++){
-	checkNavigation(MyM[0][1], MyM[0][0], lat, lng, cornerAz);
+	checkNavigation(MyM[f][1], MyM[f][0], lat, lng, cornerAz);
 }
 }, 20);
     
@@ -151,6 +151,7 @@ if(Math.abs(az - s) < 10 ){
 descriptionH.textContent = MyM[f][2];
 descriptionText.textContent = MyM[f][3];
 nameMo.textContent = MyM[f][2];
+alert(f);
 }
 
 
