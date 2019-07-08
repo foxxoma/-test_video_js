@@ -144,16 +144,16 @@ az = az.toFixed(0);
 }
 
 if(Math.abs(az - s) < 5 ){
-	alert(f);
 descriptionH.textContent = MyM[f][2];
 descriptionText.textContent = MyM[f][3];
 nameMo.textContent = MyM[f][2];
 }
-else {
+
+/*else {
 descriptionH.textContent = '*****';
 descriptionText.textContent = '*****';
 nameMo.textContent = '*****';
-}
+}*/
 
 }
 
