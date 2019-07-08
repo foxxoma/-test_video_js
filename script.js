@@ -149,11 +149,11 @@ descriptionText.textContent = MyM[f][3];
 nameMo.textContent = MyM[f][2];
 }
 
-/*else {
+else {
 descriptionH.textContent = '*****';
 descriptionText.textContent = '*****';
 nameMo.textContent = '*****';
-}*/
+}
 
 }
 
