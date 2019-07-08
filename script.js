@@ -58,13 +58,14 @@ if ('ondeviceorientationabsolute' in window) {
 let  MyM, MxM, f;
 
 
-MyM = [42.9391, 42.9034];
-MxM = [44.59806, 43.97759];
+MyM = [m1 = [42.9391,44.59806,"m1","m1-dfdggfgfgfgfgfg"],
+m2=[42.9034,43.97759,"m1","m1-dfdggfgfgfgfgfg"]];
+
 
 
 setInterval(function() {
 	for ( f = 0; f < MyM.length; f++){
-	checkNavigation(MxM[f], MyM[f], lat, lng, cornerAz);
+	checkNavigation(MyM[f][1], MyM[f][0], lat, lng, cornerAz);
 }
 }, 10);
     
@@ -142,28 +143,50 @@ s = s.toFixed(0);
 az = az.toFixed(0);
 }
 
-if(az == s && f == 1){
-alert('1');
-descriptionText.textContent = 'm2-sdfsdfsdfdfdsf';
-descriptionH.textContent = 'm2';
-nameMo.textContent = 'm2';
-
+if(az == s){
+	alert(f);
+descriptionH.textContent = MyM[f][2];
+descriptionText.textContent = MyM[f][3];
+nameMo.textContent = MyM[f][2];
 }
-else if(az == s && f == 0){
-alert('0');
-descriptionText.textContent = 'm1-sdfsdfsdfdfdsf';
-descriptionH.textContent = 'm1';
-nameMo.textContent = 'm1';
 
 
 }
-else{
-descriptionText.textContent = '*****';
-descriptionH.textContent = '*****';
-nameMo.textContent = '*****';
-}
 
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 const description = document.getElementById("description");
 const descriptionMenu = document.getElementById("description_menu");
