@@ -58,8 +58,8 @@ if ('ondeviceorientationabsolute' in window) {
 let  MyM, MxM, f;
 
 
-MyM = [m1 = [42.9034,43.97759,"m1","m1-dfdggfgfgfgfgfg"],
-m2=[42.9391,44.59806,"m2","m2-dfdggfgfgfgfgfg"]];
+MyM = [[42.9034,43.97759,"m1","m1-dfdggfgfgfgfgfg"],
+[42.9391,44.59806,"m2","m2-dfdggfgfgfgfgfg"]];
 
 
 
