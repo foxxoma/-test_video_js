@@ -67,7 +67,7 @@ setInterval(function() {
 	for ( f = 0; f < MyM.length; f++){
 	checkNavigation(MyM[f][1], MyM[f][0], lat, lng, cornerAz);
 }
-}, 10);
+}, 20);
     
 
 
