@@ -59,7 +59,7 @@ let  MyM, MxM, f;
 
 
 MyM = [m1 = [42.9391,44.59806,"m1","m1-dfdggfgfgfgfgfg"],
-m2=[42.9034,43.97759,"m1","m1-dfdggfgfgfgfgfg"]];
+m2=[42.9034,43.97759,"m2","m2-dfdggfgfgfgfgfg"]];
 
 
 
@@ -144,7 +144,7 @@ az = az.toFixed(0);
 }
 
 if(az == s){
-	alert(f);
+alert(f);
 descriptionH.textContent = MyM[f][2];
 descriptionText.textContent = MyM[f][3];
 nameMo.textContent = MyM[f][2];
