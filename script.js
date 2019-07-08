@@ -144,7 +144,6 @@ az = az.toFixed(0);
 }
 
 if(az == s){
-alert(f);
 descriptionH.textContent = MyM[f][2];
 descriptionText.textContent = MyM[f][3];
 nameMo.textContent = MyM[f][2];
