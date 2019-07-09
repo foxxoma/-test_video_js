@@ -143,20 +143,20 @@ s = s.toFixed(0);
 az = az.toFixed(0);
 }
 
-if(window.innerHeight < window.innerWidth){
+/*if(window.innerHeight < window.innerWidth){
     az  = az - 90;
     	if(az < 0) 
 		{
 			az = 360 - az;
 		}
 }
-
+*/
+nameMo.textContent = az;
 
 if(Math.abs(az - s) < 10 ){
 descriptionH.textContent = MyM[f][2];
 descriptionText.textContent = MyM[f][3];
-nameMo.textContent = MyM[f][2];
-alert(f);
+
 
 }
 /*else {
