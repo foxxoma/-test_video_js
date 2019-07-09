@@ -144,6 +144,7 @@ az = az.toFixed(0);
 }
 
 if(window.innerHeight < window.innerWidth){
+	alert(offfffffff);
     az  = az + 90;
     	if(az > 360) 
 		{
