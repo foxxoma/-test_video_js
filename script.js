@@ -13,7 +13,7 @@ navigator.geolocation.getCurrentPosition(function(position) {
        lng = position.coords.longitude;
        
 
- });
+});
 
 var video = document.getElementById('video');
 var front = false;
@@ -143,10 +143,14 @@ s = s.toFixed(0);
 az = az.toFixed(0);
 }
 
-
 if(window.innerHeight < window.innerWidth){
     az  = az + 90;
+    	if(az > 360) 
+		{
+			az = az - 360;
+		}
 }
+
 
 if(Math.abs(az - s) < 10 ){
 descriptionH.textContent = MyM[f][2];
