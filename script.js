@@ -143,14 +143,14 @@ s = s.toFixed(0);
 az = az.toFixed(0);
 }
 
-/*if(window.innerHeight < window.innerWidth){
-    az  = az - 90;
-    	if(az < 0) 
+if(window.innerHeight < window.innerWidth){
+    az  = az + 90;
+    	if(az > 360) 
 		{
-			az = 360 - az;
+			az = az - 360;
 		}
 }
-*/
+
 nameMo.textContent = az;
 
 if(Math.abs(az - s) < 10 ){
