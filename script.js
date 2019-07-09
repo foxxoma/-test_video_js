@@ -143,15 +143,15 @@ s = s.toFixed(0);
 az = az.toFixed(0);
 }
 
-window.addEventListener("orientationchange", function() {
+
  
- if( window.orientation == 90 || window.orientation == -90){
+ if(window.orientation  == 90 || window.orientation == -90){
  	az = az + 90;
  		if (az > 360) {
  			az = az - 360;
  		}
  }
-}, false);
+
 
 nameMo.textContent = az;
 
