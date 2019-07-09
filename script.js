@@ -145,7 +145,12 @@ az = az.toFixed(0);
 
 window.addEventListener("orientationchange", function() {
  
- nameMo.textContent = window.orientation;
+ if( Math.abs(window.orientation) == 90){
+ 	az = az + 90;
+ 		if (az > 360) {
+ 			az = az - 360;
+ 		}
+ }
 }, false);
 
 
@@ -153,7 +158,7 @@ window.addEventListener("orientationchange", function() {
 if(Math.abs(az - s) < 10 ){
 descriptionH.textContent = MyM[f][2];
 descriptionText.textContent = MyM[f][3];
-
+ nameMo.textContent = az;
 
 }
 /*else {
