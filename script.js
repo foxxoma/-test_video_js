@@ -145,7 +145,7 @@ az = az.toFixed(0);
 
 window.addEventListener("orientationchange", function() {
  
- if( Math.abs(window.orientation) == 90){
+ if( window.orientation == 90 || window.orientation == -90){
  	az = az + 90;
  		if (az > 360) {
  			az = az - 360;
