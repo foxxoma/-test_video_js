@@ -145,11 +145,18 @@ az = az.toFixed(0);
 
 
 
+
 if(Math.abs(az - s) < 10 ){
 descriptionH.textContent = MyM[f][2];
 descriptionText.textContent = MyM[f][3];
 nameMo.textContent = MyM[f][2];
+alert(f);
 
+}
+else {
+	descriptionH.textContent = "*****";
+	descriptionText.textContent = "*****";
+	nameMo.textContent = "*****";
 }
 
 
