@@ -153,7 +153,7 @@ window.addEventListener("orientationchange", function() {
  }
 }, false);
 
- nameMo.textContent = az;
+nameMo.textContent = az;
 
 if(Math.abs(az - s) < 10 ){
 descriptionH.textContent = MyM[f][2];
