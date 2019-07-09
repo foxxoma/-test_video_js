@@ -151,12 +151,12 @@ if(s > 360)
 s = s.toFixed(0);
 az = az.toFixed(0);
 
-nameMo.textContent = az;
+
 
 if(Math.abs(az - s) < 10 ){
 descriptionH.textContent = MyM[f][2];
 descriptionText.textContent = MyM[f][3];
-
+nameMo.textContent = MyM[f][3];
 
 }
 /*else {
