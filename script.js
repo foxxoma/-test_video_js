@@ -153,7 +153,7 @@ az = az.toFixed(0);
  }
 
 // прошу работай
- nameMo.textContent = window.orientation;
+ nameMo.textContent = az;
 
 if(Math.abs(az - s) < 10 ){
 descriptionH.textContent = MyM[f][2];
