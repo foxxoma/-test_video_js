@@ -94,8 +94,7 @@ cM = Math.sqrt( Math.pow(bM,2) + Math.pow(aM,2) );
 corner2 = Math.acos( (Math.pow(aM,2) + Math.pow(cM,2) - Math.pow(bM,2)) / (2*aM*cM)) *(180/Math.PI);
 
  s = corner1 + corner2;
-s = s.toFixed(0);
-az = az.toFixed(0);
+
 }
 
 else if (yM < y && xM > x){
@@ -107,8 +106,7 @@ cM = Math.sqrt( Math.pow(bM,2) + Math.pow(aM,2) );
 corner2 = Math.acos( (Math.pow(aM,2) + Math.pow(cM,2) - Math.pow(bM,2)) / (2*aM*cM)) *(180/Math.PI);
 
  s = corner1 + 90 + corner2;
-s = s.toFixed(0);
-az = az.toFixed(0);
+
 }
 
 else if (yM < y && xM < x){
@@ -120,8 +118,7 @@ cM = Math.sqrt( Math.pow(bM,2) + Math.pow(aM,2) );
 corner2 = Math.acos( (Math.pow(aM,2) + Math.pow(cM,2) - Math.pow(bM,2)) / (2*aM*cM)) *(180/Math.PI);
 
  s = corner1 + 90 + 90 + corner2;
-s = s.toFixed(0);
-az = az.toFixed(0);
+
 }
 
 else if (yM > y && xM < x){
@@ -139,8 +136,7 @@ if(s > 360)
 	s = s - 360;
 }
 
-s = s.toFixed(0);
-az = az.toFixed(0);
+
 }
 
 
@@ -152,8 +148,10 @@ az = az.toFixed(0);
  		}
  }
 
-// прошу работай
- nameMo.textContent = az;
+s = s.toFixed(0);
+az = az.toFixed(0);
+
+nameMo.textContent = az;
 
 if(Math.abs(az - s) < 10 ){
 descriptionH.textContent = MyM[f][2];
