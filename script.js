@@ -2,6 +2,7 @@ var lat;
 var lng;
 let aC;
 let rad;
+let orientation;
 var cornerAz;
 const descriptionText = document.getElementById('description_text');
 const descriptionH = document.getElementById('description_h');
@@ -36,6 +37,7 @@ if ('ondeviceorientationabsolute' in window) {
 			window.ondeviceorientationabsolute = function(event) {
 				rad = event.alpha;
 				cornerAz = 360 - event.alpha;
+				orientation = event.gamma;
 			};
 		
 		} 
@@ -46,13 +48,13 @@ if ('ondeviceorientationabsolute' in window) {
 
        			rad = event.alpha;
        			cornerAz = 360 - event.alpha;
-
+       			orientation = event.gamma;
 			};
 		
 		}
 
 		else{
-				alert("f2");
+				alert("error");
 		}
 
 let  MyM, MxM, f;
@@ -144,12 +146,12 @@ az = az.toFixed(0);
 }
 
 
-
+nameMo.textContent = orientation;
 
 if(Math.abs(az - s) < 10 ){
 descriptionH.textContent = MyM[f][2];
 descriptionText.textContent = MyM[f][3];
-nameMo.textContent = MyM[f][2];
+
 //alert(f);
 
 }
