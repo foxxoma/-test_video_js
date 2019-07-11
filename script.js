@@ -6,6 +6,11 @@ var cornerAz;
 const descriptionTextrea = document.getElementById('description_textrea');
 const descriptionNameMountain = document.getElementById('description_name_mountain');
 const nameMountain = document.getElementById('name_mountain');
+const name = document.getElementById('name');
+const description = document.getElementById("description");
+const descriptionMenu = document.getElementById("description_menu");
+
+
 navigator.geolocation.getCurrentPosition(function(position) {
 
         // Текущие координаты.
@@ -141,7 +146,7 @@ if(s > 360)
 
 
  
- if(window.orientation  == 90 || window.orientation == -90){
+if(window.orientation  == 90 || window.orientation == -90){
  	az = az + 90;
  		if (az > 360) {
  			az = az - 360;
@@ -206,8 +211,6 @@ nameMountain.textContent = MyM[f][2];
 
 
 
-const description = document.getElementById("description");
-const descriptionMenu = document.getElementById("description_menu");
 let Mchek = 0;
 
 
@@ -219,3 +222,8 @@ else {
  description.style.display = "none"; Mchek = 0;
 }
  });
+
+
+if(window.orientation  == 90 || window.orientation == -90){
+name.style.cssText = 'height: 30%; top: -15%;'; 
+}
