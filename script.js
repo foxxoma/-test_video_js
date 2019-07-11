@@ -210,22 +210,26 @@ nameMountain.textContent = MXYND[f][2];
 //open and close description
 let Mchek = 0;
 descriptionMenu.addEventListener('click', function(e){
-if (Mchek == 0){
-description.style.display = "table"; Mchek = 1;
-}
-else {
- description.style.display = "none"; Mchek = 0;
-}
+	if (Mchek == 0){
+		description.style.display = "table"; Mchek = 1;
+	}
+	else {
+		description.style.display = "none"; Mchek = 0;
+	}
  });
 
 
 //style changes when you rotate the screen
 window.addEventListener("orientationchange", function() {
-if(window.orientation  == 90 || window.orientation == -90){
-name.style.height = "30%";
-name.style.top = "-15%";
-}
-	}, false);
+	if(window.orientation  == 90 || window.orientation == -90){
+		name.style.height = "30%";
+		name.style.top = "-15%";
+	}
+	else{
+		name.style.height = "15%";
+		name.style.top = "-10%";
+	}
+}, false);
 
 
 
