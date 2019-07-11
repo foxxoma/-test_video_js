@@ -3,9 +3,9 @@ var lng;
 let aC;
 let rad;
 var cornerAz;
-const descriptionText = document.getElementById('description_text');
-const descriptionH = document.getElementById('description_h');
-const nameMo = document.getElementById('name_Mo');
+const descriptionTextrea = document.getElementById('description_textrea');
+const descriptionNameMountain = document.getElementById('description_name_mountain');
+const nameMountain = document.getElementById('name_mountain');
 navigator.geolocation.getCurrentPosition(function(position) {
 
         // Текущие координаты.
@@ -55,7 +55,7 @@ if ('ondeviceorientationabsolute' in window) {
 				alert("error");
 		}
 
-let  MyM, MxM, f;
+let  MyM, f;
 
 
 MyM = [[42.9034,43.97759,"m1","m1-dfdggfgfgfgfgfg"],
@@ -154,9 +154,9 @@ az = az.toFixed(0);
 
 
 if(Math.abs(az - s) < 10 ){
-descriptionH.textContent = MyM[f][2];
-descriptionText.textContent = MyM[f][3];
-nameMo.textContent = MyM[f][3];
+descriptionNameMountain.textContent = MyM[f][2];
+descriptionTextrea.textContent = MyM[f][3];
+nameMountain.textContent = MyM[f][2];
 
 }
 /*else {

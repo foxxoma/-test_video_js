@@ -2,6 +2,7 @@
 	padding: 0;
 	margin: 0;
 	color: #fff;
+	font-size: 19px;
 }
 
 
@@ -26,8 +27,7 @@
   border-radius: 50%;
 
 }
-
-.name_Mo {
+.name_mountain {
   width: 100%;
   text-align: center;
   position: absolute;
@@ -55,20 +55,18 @@
 	height: 40%;
 	display: none;
 	border-collapse:collapse;
-
 }
-.description_text {
+.description_textrea {
 	width: 100%;
 	height: 100%;
 	border: none;
 	padding: 1%;
 	background: rgba(0,0,0,45%);
-	font-size: 150%;
 }
-.tr2{
+.description_text{
 	vertical-align: top;
 }
-.tr1{
+.description_name_mountain{
 	height: 10%;
 	background: rgba(0,0,0,65%);
 	
@@ -82,7 +80,6 @@
 	padding: 1%;
 	background: rgba(0,0,0,65%);
 }
-
 #trailer {
 				position: fixed;
 				top: 0; right: 0; bottom: 0; left: 0;
