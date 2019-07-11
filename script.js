@@ -2,6 +2,7 @@ var lat;
 var lng;
 let aC;
 let rad;
+let  MXYND, f;
 var cornerAz;
 const descriptionTextrea = document.getElementById('description_textrea');
 const descriptionNameMountain = document.getElementById('description_name_mountain');
@@ -9,8 +10,10 @@ const nameMountain = document.getElementById('name_mountain');
 const name = document.getElementById('name');
 const description = document.getElementById("description");
 const descriptionMenu = document.getElementById("description_menu");
+const video = document.getElementById('video');
+let front = false;
 
-
+//I get latitude and longitude
 navigator.geolocation.getCurrentPosition(function(position) {
 
         // Текущие координаты.
@@ -20,8 +23,9 @@ navigator.geolocation.getCurrentPosition(function(position) {
 
 });
 
-var video = document.getElementById('video');
-var front = false;
+
+
+
 // Get access to the camera!
 if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
 	var myConstraints = {  video: { facingMode: (front? "user" : "environment")} }; 
@@ -34,48 +38,47 @@ if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
 }
 
 
-
-
+//getting azimuth
 if ('ondeviceorientationabsolute' in window) { 
 		
-			window.ondeviceorientationabsolute = function(event) {
-				rad = event.alpha;
-				cornerAz = 360 - event.alpha;
-			};
+	window.ondeviceorientationabsolute = function(event) {
+			rad = event.alpha;
+			cornerAz = 360 - event.alpha;
+	};
 		
-		} 
+} 
 
-		else if ('ondeviceorientation' in window) { 
+else if ('ondeviceorientation' in window) { 
 			
-			window.ondeviceorientationabsolute = function(event) {
+	window.ondeviceorientationabsolute = function(event) {
 
-       			rad = event.alpha;
-       			cornerAz = 360 - event.alpha;
+       		rad = event.alpha;
+       		cornerAz = 360 - event.alpha;
 
-			};
+	};
 		
-		}
+}
 
-		else{
-				alert("error");
-		}
-
-let  MyM, f;
+else{
+			alert("error");
+}
 
 
-MyM = [[42.9034,43.97759,"m1","m1-dfdggfgfgfgfgfg"],
+
+//mountain dataset
+MXYND = [[42.9034,43.97759,"m1","m1-dfdggfgfgfgfgfg"],
 [42.9391,44.59806,"m2","m2-dfdggfgfgfgfgfg"]];
 
 
-
+//I transfer all data to check function
 setInterval(function() {
-	for ( f = 0; f < MyM.length; f++){
-	checkNavigation(MyM[f][1], MyM[f][0], lat, lng, cornerAz);
+	for ( f = 0; f < MXYND.length; f++){
+	checkNavigation(MXYND[f][1], MXYND[f][0], lat, lng, cornerAz);
 }
 }, 20);
     
 
-
+//checks what mountain i look at
 function checkNavigation(xM, yM, y, x, az){
 	let corner1, corner2;
 	let a, b, c;
@@ -85,8 +88,6 @@ function checkNavigation(xM, yM, y, x, az){
 	corner1 = Math.acos( (Math.pow(a,2) + Math.pow(c,2) - Math.pow(b,2)) / (2*a*c)) *(180/Math.PI);
 	
 let aM, bM, cM;
-
-
 let s;
 
 	
@@ -145,7 +146,7 @@ if(s > 360)
 }
 
 
- 
+//degree check with upside down screen 
 if(window.orientation  == 90 || window.orientation == -90){
  	az = az + 90;
  		if (az > 360) {
@@ -159,9 +160,9 @@ az = az.toFixed(0);
 
 
 if(Math.abs(az - s) < 10 ){
-descriptionNameMountain.textContent = MyM[f][2];
-descriptionTextrea.textContent = MyM[f][3];
-nameMountain.textContent = MyM[f][2];
+descriptionNameMountain.textContent = MXYND[f][2];
+descriptionTextrea.textContent = MXYND[f][3];
+nameMountain.textContent = MXYND[f][2];
 
 }
 /*else {
@@ -171,9 +172,6 @@ nameMountain.textContent = MyM[f][2];
 }
 */
 
-
-
-
 }
 
 
@@ -209,11 +207,8 @@ nameMountain.textContent = MyM[f][2];
 
 
 
-
-
+//open and close description
 let Mchek = 0;
-
-
 descriptionMenu.addEventListener('click', function(e){
 if (Mchek == 0){
 description.style.display = "table"; Mchek = 1;
@@ -224,7 +219,14 @@ else {
  });
 
 
+//style changes when you rotate the screen
+window.addEventListener("orientationchange", function() {
 if(window.orientation  == 90 || window.orientation == -90){
 name.style.height = "30%";
 name.style.top = "-15%";
 }
+	}, false);
+
+
+
+
