@@ -16,17 +16,35 @@
 	top: 0%;
 
 }
-.name_Img{
-	width: 50%;
-	height: 10%;
+.name {
+  width: 50%;
+  height: 20%;
+  position: absolute;
+  top: -10%;
+  left: 25%;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 50%;
+
 }
+
 .name_Mo {
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  bottom: 20%;
+
+}
+.settings {
 	position: absolute;
-	text-align: center;
-	width: 99%;
-	height: 2%;
-	left: 0%; 
-	top: 1%;
+	position: fixed;
+	width: 5%;
+	height: auto;
+	right: 0px;
+	top: 0px;
+}
+.settings img {
+	width: 100%;
+	height: auto;
 }
 .description {
 	position: absolute;
@@ -35,21 +53,24 @@
 	bottom: 0%;
 	width: 50%;
 	height: 40%;
-	background: rgba(0,0,0,40%);
 	display: none;
+	border-collapse:collapse;
+
 }
 .description_text {
 	width: 100%;
 	height: 100%;
 	border: none;
-	font-size: 20px;
-	background: rgba(0,0,0,5%);
+	padding: 1%;
+	background: rgba(0,0,0,45%);
+	font-size: 150%;
 }
-
+.tr2{
+	vertical-align: top;
+}
 .tr1{
 	height: 10%;
 	background: rgba(0,0,0,65%);
-	font-size: 17px;
 	
 }
 .description_menu{
