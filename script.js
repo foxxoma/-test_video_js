@@ -224,6 +224,6 @@ else {
  });
 
 
-if(window.orientation  == 90 || window.orientation == -90){
+/*if(window.orientation  == 90 || window.orientation == -90){
 name.style.cssText = 'height: 30%; top: -15%;'; 
-}
+}*/
