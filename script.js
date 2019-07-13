@@ -2,7 +2,8 @@ var lat;
 var lng;
 let aC;
 let rad;
-let  MXYND, f;
+let  MXYND = JSON.parse(MXYNDjson);
+let f;
 var cornerAz;
 const descriptionTextrea = document.getElementById('description_textrea');
 const descriptionNameMountain = document.getElementById('description_name_mountain');
@@ -65,15 +66,12 @@ else{
 
 
 
-//mountain dataset
-MXYND = [[42.9034,43.97759,"m1","m1-dfdggfgfgfgfgfg"],
-[42.9391,44.59806,"m2","m2-dfdggfgfgfgfgfg"]];
 
 
 //I transfer all data to check function
 setInterval(function() {
-	for ( f = 0; f < MXYND.length; f++){
-	checkNavigation(MXYND[f][1], MXYND[f][0], lat, lng, cornerAz);
+	for ( f = 0; f < MXYND.coordinates.length; f++){
+	checkNavigation(MXYND.coordinates[f][1], MXYND.coordinates[f][0], lat, lng, cornerAz);
 }
 }, 20);
     
@@ -160,9 +158,9 @@ az = az.toFixed(0);
 
 
 if(Math.abs(az - s) < 10 ){
-descriptionNameMountain.textContent = MXYND[f][2];
-descriptionTextrea.textContent = MXYND[f][3];
-nameMountain.textContent = MXYND[f][2];
+descriptionNameMountain.textContent = MXYND.name[f];
+descriptionTextrea.textContent = MXYND.description[f];
+nameMountain.textContent = MXYND.name[f];
 
 }
 /*else {
