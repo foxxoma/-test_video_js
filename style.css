@@ -2,9 +2,12 @@
 	padding: 0;
 	margin: 0;
 	color: #fff;
-	font-size: 27px;
+
 }
 
+.window {
+	font-size: 20px;
+}
 
 	
 
@@ -17,6 +20,9 @@
 	top: 0%;
 
 }
+
+
+
 .name {
   width: 50%;
   height: 15%;
@@ -34,7 +40,10 @@
   bottom: 14%;
 
 }
-.settings {
+
+
+
+.settings_icon{
 	position: absolute;
 	position: fixed;
 	width: 5%;
@@ -42,10 +51,45 @@
 	right: 0px;
 	top: 0px;
 }
-.settings img {
+.settings_icon img {
 	width: 100%;
 	height: auto;
 }
+.settings_content {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,45%);
+	display: none;
+}
+.range_angle, .range_fontSize{
+	margin-left: 35%;
+	width: 30%;
+	margin-top: 5%;
+}
+.range_fontSize{
+	
+}
+.range_fontSize_example{
+	margin-top: 5%;
+	text-align: center;
+}
+.range_angle{
+	
+
+}
+.range_canvas_angle{
+	position: fixed;
+	bottom: 0%;
+	width: 90%;
+	height: 50%;
+	left: 5%;
+	background: rgba(0,0,0,10%);
+}
+
+
+
+
 .description {
 	position: absolute;
 	position: fixed;
@@ -62,6 +106,7 @@
 	border: none;
 	padding: 1%;
 	background: rgba(0,0,0,45%);
+	font-size: 20px;
 }
 .description_text{
 	vertical-align: top;
@@ -80,6 +125,9 @@
 	padding: 1%;
 	background: rgba(0,0,0,65%);
 }
+
+
+
 #trailer {
 				position: fixed;
 				top: 0; right: 0; bottom: 0; left: 0;

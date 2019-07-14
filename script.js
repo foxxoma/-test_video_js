@@ -4,7 +4,10 @@ let aC;
 let rad;
 let  MXYND = JSON.parse(MXYNDjson);
 let f;
+let a;
 var cornerAz;
+let xCStart, yCStart;
+let radrot
 const descriptionTextrea = document.getElementById('description_textrea');
 const descriptionNameMountain = document.getElementById('description_name_mountain');
 const nameMountain = document.getElementById('name_mountain');
@@ -12,7 +15,15 @@ const name = document.getElementById('name');
 const description = document.getElementById("description");
 const descriptionMenu = document.getElementById("description_menu");
 const video = document.getElementById('video');
+const rangeCanvasAngle = document.getElementById('range_canvas_angle');
+const settingContent = document.getElementById('settings_content');
+const settingsIcon = document.getElementById('settings_icon');
+const body = document.getElementById('window');
+let ctx =  rangeCanvasAngle.getContext('2d');
 let front = false;
+let MDcheck = 0;
+let MScheck = 0;
+let viewingAngle = 10;
 
 //I get latitude and longitude
 navigator.geolocation.getCurrentPosition(function(position) {
@@ -157,7 +168,7 @@ az = az.toFixed(0);
 
 
 
-if(Math.abs(az - s) < 10 ){
+if(Math.abs(az - s) < viewingAngle ){
 descriptionNameMountain.textContent = MXYND.name[f];
 descriptionTextrea.textContent = MXYND.description[f];
 nameMountain.textContent = MXYND.name[f];
@@ -204,15 +215,14 @@ nameMountain.textContent = MXYND.name[f];
 
 
 
-
 //open and close description
-let Mchek = 0;
+
 descriptionMenu.addEventListener('click', function(e){
-	if (Mchek == 0){
-		description.style.display = "table"; Mchek = 1;
+	if (MDcheck == 0){
+		description.style.display = "table"; MDcheck = 1;
 	}
 	else {
-		description.style.display = "none"; Mchek = 0;
+		description.style.display = "none"; MDcheck = 0;
 	}
  });
 
@@ -232,3 +242,83 @@ window.addEventListener("orientationchange", function() {
 
 
 
+
+
+
+
+
+
+
+a = 5 * Math.PI/180;
+radrot = rangeCanvasAngle.height - (rangeCanvasAngle.height / 100)* 10;
+
+if (radrot * 2 > rangeCanvasAngle.width) {
+	radrot = rangeCanvasAngle.width - (rangeCanvasAngle.width / 100)* 10;
+}
+
+xCStart = rangeCanvasAngle.width / 2;
+yCStart = rangeCanvasAngle.height;
+
+ctx.clearRect(0, 0, rangeCanvasAngle.width, rangeCanvasAngle.height);
+ctx.fillStyle = 'magenta';
+ctx.beginPath();
+ctx.moveTo(xCStart,yCStart);
+ctx.lineTo(xCStart - Math.sin(a)* radrot, yCStart - Math.cos(a)*radrot);
+ctx.stroke();
+
+ctx.beginPath();
+ctx.moveTo(xCStart,yCStart);
+ctx.lineTo(xCStart + Math.sin(a) * radrot, yCStart - Math.cos(a)*radrot);
+ctx.stroke();
+
+function CanvasRotateAngle(value){
+
+viewingAngle = value;
+a = value/2 * Math.PI/180;
+radrot = rangeCanvasAngle.height - (rangeCanvasAngle.height / 100)* 10;
+
+if (radrot * 2 > rangeCanvasAngle.width) {
+	radrot = rangeCanvasAngle.width - (rangeCanvasAngle.width / 100)* 10;
+}
+
+xCStart = rangeCanvasAngle.width / 2;
+yCStart = rangeCanvasAngle.height;
+
+ctx.clearRect(0, 0, rangeCanvasAngle.width, rangeCanvasAngle.height);
+ctx.fillStyle = 'magenta';
+ctx.beginPath();
+ctx.moveTo(xCStart,yCStart);
+ctx.lineTo(xCStart - Math.sin(a)* radrot, yCStart - Math.cos(a)*radrot);
+ctx.stroke();
+
+ctx.beginPath();
+ctx.moveTo(xCStart,yCStart);
+ctx.lineTo(xCStart + Math.sin(a) * radrot, yCStart - Math.cos(a)*radrot);
+ctx.stroke();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+function rangefontSize(value){
+	body.style.fontSize = value + 'px';
+	descriptionTextrea.style.fontSize = value + 'px';
+}
+
+
+settingsIcon.addEventListener('click', function(e){
+	if (MScheck == 0){
+		settingContent.style.display = "block"; MScheck = 1;
+	}
+	else {
+		settingContent.style.display = "none"; MScheck = 0;
+	}
+ });
