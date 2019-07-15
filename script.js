@@ -311,6 +311,7 @@ ctx.stroke();
 function rangefontSize(value){
 	body.style.fontSize = value + 'px';
 	descriptionTextrea.style.fontSize = value + 'px';
+
 }
 
 
