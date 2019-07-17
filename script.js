@@ -7,7 +7,7 @@ let f;
 let a;
 let cornerAz;
 let xCStart, yCStart;
-let radrot;
+let radrot
 const descriptionTextrea = document.getElementById('description_textrea');
 const descriptionNameMountain = document.getElementById('description_name_mountain');
 const nameMountain = document.getElementById('name_mountain');
@@ -35,6 +35,14 @@ navigator.geolocation.getCurrentPosition(function(position) {
 
 });
 
+function debounce(callback, wait) {
+    let timeout;
+    return (...args) => {
+        const context = this;
+        clearTimeout(timeout);
+        timeout = setTimeout(() => callback.apply(context, args), wait);
+    };
+}
 
 
 // Get access to the camera!
@@ -56,32 +64,31 @@ if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
 //getting azimuth
 if ('ondeviceorientationabsolute' in window) {
 
-	window.ondeviceorientationabsolute = function(event) {
+
+	window.ondeviceorientationabsolute = debounce((event) => {
+		// Check how far the user has scrolled
 		rad = event.alpha;
 		cornerAz = 360 - event.alpha;
-	};
+		for (f = 0; f < MXYND.coordinates.length; f++) {
+			checkNavigation(MXYND.coordinates[f][1], MXYND.coordinates[f][0], lat, lng, cornerAz);
+		}
+	}, 20);
 
 } else if ('ondeviceorientation' in window) {
 
-	window.ondeviceorientationabsolute = function(event) {
-
+	window.ondeviceorientationabsolute = debounce((event) => {
+		// Check how far the user has scrolled
 		rad = event.alpha;
 		cornerAz = 360 - event.alpha;
+		for (f = 0; f < MXYND.coordinates.length; f++) {
+			checkNavigation(MXYND.coordinates[f][1], MXYND.coordinates[f][0], lat, lng, cornerAz);
+		}
+	}, 20);
 
-	};
 
 } else {
 	alert("error");
 }
-
-
-
-//I transfer all data to check function
-setInterval(function() {
-	for (f = 0; f < MXYND.coordinates.length; f++) {
-		checkNavigation(MXYND.coordinates[f][1], MXYND.coordinates[f][0], lat, lng, cornerAz);
-	}
-}, 20);
 
 
 //checks what mountain i look at
@@ -143,6 +150,7 @@ function checkNavigation(xM, yM, y, x, az) {
 
 
 	}
+
 
 
 	//degree check with upside down screen 
