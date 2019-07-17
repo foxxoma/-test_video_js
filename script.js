@@ -35,15 +35,27 @@ navigator.geolocation.getCurrentPosition(function(position) {
 
 });
 
-function debounce(callback, wait) {
-    let timeout;
-    return (...args) => {
-        const context = this;
-        clearTimeout(timeout);
-        timeout = setTimeout(() => callback.apply(context, args), wait);
-    };
-}
+function throttle(callback, wait, immediate = false) {
+  let timeout = null 
+  let initialCall = true
+  
+  return function() {
+    const callNow = immediate && initialCall
+    const next = () => {
+      callback.apply(this, arguments)
+      timeout = null
+    }
+    
+    if (callNow) { 
+      initialCall = false
+      next()
+    }
 
+    if (!timeout) {
+      timeout = setTimeout(next, wait)
+    }
+  }
+}
 
 // Get access to the camera!
 if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
@@ -65,7 +77,7 @@ if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
 if ('ondeviceorientationabsolute' in window) {
 
 
-	window.ondeviceorientationabsolute = debounce((event) => {
+	window.ondeviceorientationabsolute = throttle((event) => {
 		// Check how far the user has scrolled
 		rad = event.alpha;
 		cornerAz = 360 - event.alpha;
@@ -76,7 +88,7 @@ if ('ondeviceorientationabsolute' in window) {
 
 } else if ('ondeviceorientation' in window) {
 
-	window.ondeviceorientationabsolute = debounce((event) => {
+	window.ondeviceorientationabsolute = throttle((event) => {
 		// Check how far the user has scrolled
 		rad = event.alpha;
 		cornerAz = 360 - event.alpha;
