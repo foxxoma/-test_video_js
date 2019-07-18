@@ -245,7 +245,7 @@ ctx.stroke();
 
 function CanvasRotateAngle(value) {
 
-	viewingAngle = value;
+	viewingAngle = value / 2;
 	a = value / 2 * Math.PI / 180;
 	radrot = rangeCanvasAngle.height - (rangeCanvasAngle.height / 100) * 10;
 
