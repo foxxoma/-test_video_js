@@ -2,7 +2,7 @@ let lat;
 let lng;
 let aC;
 let rad;
-let MXYND = JSON.parse(MXYNDjson);
+
 let f;
 let a;
 let cornerAz;
@@ -81,8 +81,8 @@ if ('ondeviceorientationabsolute' in window) {
 		// Check how far the user has scrolled
 		rad = event.alpha;
 		cornerAz = 360 - event.alpha;
-		for (f = 0; f < MXYND.coordinates.length; f++) {
-			checkNavigation(MXYND.coordinates[f][1], MXYND.coordinates[f][0], lat, lng, cornerAz);
+		for (f = 0; f < MXYND.length; f++) {
+			checkNavigation(MXYND[f].lat, MXYND[f].lng, lat, lng, cornerAz);
 		}
 	}, 20);
 
@@ -92,8 +92,8 @@ if ('ondeviceorientationabsolute' in window) {
 		// Check how far the user has scrolled
 		rad = event.alpha;
 		cornerAz = 360 - event.alpha;
-		for (f = 0; f < MXYND.coordinates.length; f++) {
-			checkNavigation(MXYND.coordinates[f][1], MXYND.coordinates[f][0], lat, lng, cornerAz);
+		for (f = 0; f < MXYND.length; f++) {
+			checkNavigation(MXYND[f].lat, MXYND[f].lng, lat, lng, cornerAz);
 		}
 	}, 20);
 
@@ -104,7 +104,7 @@ if ('ondeviceorientationabsolute' in window) {
 
 
 //checks what mountain i look at
-function checkNavigation(xM, yM, y, x, az) {
+function checkNavigation(yM, xM , y, x, az) {
 	let corner1, corner2;
 	let a, b, c;
 	b = x;
@@ -179,9 +179,9 @@ function checkNavigation(xM, yM, y, x, az) {
 
 
 	if (Math.abs(az - s) < viewingAngle) {
-		descriptionNameMountain.textContent = MXYND.name[f];
-		descriptionTextrea.textContent = MXYND.description[f];
-		nameMountain.textContent = MXYND.name[f];
+		descriptionNameMountain.textContent = MXYND[f].name;
+		descriptionTextrea.textContent = MXYND[f].description;
+		nameMountain.textContent = MXYND[f].name;
 
 	}
 	/*else {
