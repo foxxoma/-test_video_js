@@ -2,7 +2,6 @@ let lat;
 let lng;
 let aC;
 let rad;
-
 let f;
 let a;
 let cornerAz;
@@ -35,24 +34,20 @@ navigator.geolocation.getCurrentPosition(function(position) {
 
 });
 
-function throttle(callback, wait, immediate = false) {
-	let timeout = null
-	let initialCall = true
+function throttle(callback, delay) {
+	let params = null;
+	let timeout = null;
+
+	const invoke = () => {
+		callback.apply(this, params);
+		timeout = null;
+	}
 
 	return function() {
-		const callNow = immediate && initialCall
-		const next = () => {
-			callback.apply(this, arguments)
-			timeout = null
-		}
-
-		if (callNow) {
-			initialCall = false
-			next()
-		}
+		params = arguments;
 
 		if (!timeout) {
-			timeout = setTimeout(next, wait)
+			timeout = setTimeout(invoke, delay);
 		}
 	}
 }
@@ -104,7 +99,7 @@ if ('ondeviceorientationabsolute' in window) {
 
 
 //checks what mountain i look at
-function checkNavigation(yM, xM , y, x, az) {
+function checkNavigation(yM, xM, y, x, az) {
 	let corner1, corner2;
 	let a, b, c;
 	b = x;
@@ -208,18 +203,6 @@ descriptionMenu.addEventListener('click', function(e) {
 });
 
 
-//style changes when you rotate the screen
-window.addEventListener("orientationchange", function() {
-	if (window.orientation == 90 || window.orientation == -90) {
-		name.style.height = "30%";
-		name.style.top = "-15%";
-	} else {
-		name.style.height = "15%";
-		name.style.top = "-10%";
-	}
-}, false);
-
-
 
 a = 5 * Math.PI / 180;
 radrot = rangeCanvasAngle.height - (rangeCanvasAngle.height / 100) * 10;
@@ -274,8 +257,8 @@ function CanvasRotateAngle(value) {
 function rangefontSize(value) {
 	body.style.fontSize = value + 'px';
 	descriptionTextrea.style.fontSize = value + 'px';
-	let p = name.width;
-
+	///padding-top = font-size + padding-bottom, 
+	//30 -15
 }
 
 
