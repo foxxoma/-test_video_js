@@ -204,6 +204,7 @@ descriptionMenu.addEventListener('click', function(e) {
 
 
 
+let StartCanvasRotateAngle = function () {
 a = 5 * Math.PI / 180;
 radrot = rangeCanvasAngle.height - (rangeCanvasAngle.height / 100) * 10;
 
@@ -225,6 +226,7 @@ ctx.beginPath();
 ctx.moveTo(xCStart, yCStart);
 ctx.lineTo(xCStart + Math.sin(a) * radrot, yCStart - Math.cos(a) * radrot);
 ctx.stroke();
+}
 
 function CanvasRotateAngle(value) {
 
@@ -252,6 +254,7 @@ function CanvasRotateAngle(value) {
 	ctx.stroke();
 }
 
+StartCanvasRotateAngle();
 
 
 function rangefontSize(value) {
@@ -271,3 +274,6 @@ settingsIcon.addEventListener('click', function(e) {
 		MScheck = 0;
 	}
 });
+
+
+
