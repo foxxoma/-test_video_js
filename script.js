@@ -1,16 +1,6 @@
-let lat;
-let lng;
-let aC;
-let rad;
-let f;
-let a;
-let cornerAz;
-let xCStart, yCStart;
-let radrot
 const descriptionTextrea = document.getElementById('description_textrea');
 const descriptionNameMountain = document.getElementById('description_name_mountain');
 const nameMountain = document.getElementById('name_mountain');
-const name = document.getElementById('name');
 const description = document.getElementById("description");
 const descriptionMenu = document.getElementById("description_menu");
 const video = document.getElementById('video');
@@ -18,20 +8,23 @@ const rangeCanvasAngle = document.getElementById('range_canvas_angle');
 const settingContent = document.getElementById('settings_content');
 const settingsIcon = document.getElementById('settings_icon');
 const body = document.getElementById('window');
+const rangeFontSize = document.getElementById('range_fontSize');
+const rangeAngle = document.getElementById('range_angle');
+
 let ctx = rangeCanvasAngle.getContext('2d');
 let front = false;
 let MDcheck = 0;
 let MScheck = 0;
 let viewingAngle = 10;
+let MeLat;
+let MeLng;
+
+StartCanvasRotateAngle(); //starting angle of view
 
 //I get latitude and longitude
 navigator.geolocation.getCurrentPosition(function(position) {
-
-	// Текущие координаты.
-	lat = position.coords.latitude;
-	lng = position.coords.longitude;
-
-
+	MeLat = position.coords.latitude;
+	MeLng = position.coords.longitude;
 });
 
 function throttle(callback, delay) {
@@ -67,52 +60,50 @@ if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
 	});
 }
 
-
 //getting azimuth
 if ('ondeviceorientationabsolute' in window) {
-
-
 	window.ondeviceorientationabsolute = throttle((event) => {
 		// Check how far the user has scrolled
-		rad = event.alpha;
-		cornerAz = 360 - event.alpha;
-		for (f = 0; f < MXYND.length; f++) {
-			checkNavigation(MXYND[f].lat, MXYND[f].lng, lat, lng, cornerAz);
-		}
+		let cornerAz = 360 - event.alpha;
+		cornerAz = cornerAz.toFixed(0);
+		angleComparison(cornerAz);
 	}, 20);
 
 } else if ('ondeviceorientation' in window) {
-
 	window.ondeviceorientationabsolute = throttle((event) => {
 		// Check how far the user has scrolled
-		rad = event.alpha;
-		cornerAz = 360 - event.alpha;
-		for (f = 0; f < MXYND.length; f++) {
-			checkNavigation(MXYND[f].lat, MXYND[f].lng, lat, lng, cornerAz);
-		}
+		let cornerAz = 360 - event.alpha;
+		cornerAz = cornerAz.toFixed(0);
+		angleComparison(cornerAz);
 	}, 20);
-
 
 } else {
 	alert("error");
 }
 
+function angleComparison(az) {
+	for (let f = 0; f < MXYND.length; f++) {
+		if (Math.abs(az - getAngle(MXYND[f].lat, MXYND[f].lng, MeLat, MeLng)) < viewingAngle) {
+			descriptionNameMountain.textContent = MXYND[f].name;
+			descriptionTextrea.textContent = MXYND[f].description;
+			nameMountain.textContent = MXYND[f].name;
+		}
+	}
+}
 
 //checks what mountain i look at
-function checkNavigation(yM, xM, y, x, az) {
+function getAngle(yM, xM, y, x) {
 	let corner1, corner2;
-	let a, b, c;
-	b = x;
-	c = 90 - y;
-	a = Math.sqrt(Math.pow(b, 2) + Math.pow(c, 2));
-	corner1 = Math.acos((Math.pow(a, 2) + Math.pow(c, 2) - Math.pow(b, 2)) / (2 * a * c)) * (180 / Math.PI);
+	let aMe, bMe, cMe;
+	bMe = x;
+	cMe = 90 - y;
+	aMe = Math.sqrt(Math.pow(bMe, 2) + Math.pow(cMe, 2));
+	corner1 = Math.acos((Math.pow(aMe, 2) + Math.pow(cMe, 2) - Math.pow(bMe, 2)) / (2 * aMe * cMe)) * (180 / Math.PI);
 
 	let aM, bM, cM;
 	let s;
 
-
 	if (yM > y && xM > x) {
-
 
 		aM = yM - y;
 		bM = xM - x;
@@ -154,92 +145,31 @@ function checkNavigation(yM, xM, y, x, az) {
 		if (s > 360) {
 			s = s - 360;
 		}
-
-
 	}
-
-
 
 	//degree check with upside down screen 
 	if (window.orientation == 90 || window.orientation == -90) {
-		az = az + 90;
-		if (az > 360) {
-			az = az - 360;
+		s = s - 90;
+		if (s < 0) {
+			s = 360 - s;
 		}
 	}
 
 	s = s.toFixed(0);
-	az = az.toFixed(0);
-
-
-
-	if (Math.abs(az - s) < viewingAngle) {
-		descriptionNameMountain.textContent = MXYND[f].name;
-		descriptionTextrea.textContent = MXYND[f].description;
-		nameMountain.textContent = MXYND[f].name;
-
-	}
-	/*else {
-		descriptionH.textContent = "*****";
-		descriptionText.textContent = "*****";
-		nameMo.textContent = "*****";
-	}
-	*/
+	return s;
 
 }
 
-
-
-//open and close description
-
-descriptionMenu.addEventListener('click', function(e) {
-	if (MDcheck == 0) {
-		description.style.display = "table";
-		MDcheck = 1;
-	} else {
-		description.style.display = "none";
-		MDcheck = 0;
-	}
-});
-
-
-
-let StartCanvasRotateAngle = function () {
-a = 5 * Math.PI / 180;
-radrot = rangeCanvasAngle.height - (rangeCanvasAngle.height / 100) * 10;
-
-if (radrot * 2 > rangeCanvasAngle.width) {
-	radrot = rangeCanvasAngle.width - (rangeCanvasAngle.width / 100) * 10;
-}
-
-xCStart = rangeCanvasAngle.width / 2;
-yCStart = rangeCanvasAngle.height;
-
-ctx.clearRect(0, 0, rangeCanvasAngle.width, rangeCanvasAngle.height);
-ctx.fillStyle = 'magenta';
-ctx.beginPath();
-ctx.moveTo(xCStart, yCStart);
-ctx.lineTo(xCStart - Math.sin(a) * radrot, yCStart - Math.cos(a) * radrot);
-ctx.stroke();
-
-ctx.beginPath();
-ctx.moveTo(xCStart, yCStart);
-ctx.lineTo(xCStart + Math.sin(a) * radrot, yCStart - Math.cos(a) * radrot);
-ctx.stroke();
-}
-
-function CanvasRotateAngle(value) {
-
-	viewingAngle = value / 2;
-	a = value / 2 * Math.PI / 180;
-	radrot = rangeCanvasAngle.height - (rangeCanvasAngle.height / 100) * 10;
+function StartCanvasRotateAngle() {
+	let a = 5 * Math.PI / 180;
+	let radrot = rangeCanvasAngle.height - (rangeCanvasAngle.height / 100) * 10;
 
 	if (radrot * 2 > rangeCanvasAngle.width) {
 		radrot = rangeCanvasAngle.width - (rangeCanvasAngle.width / 100) * 10;
 	}
 
-	xCStart = rangeCanvasAngle.width / 2;
-	yCStart = rangeCanvasAngle.height;
+	let xCStart = rangeCanvasAngle.width / 2;
+	let yCStart = rangeCanvasAngle.height;
 
 	ctx.clearRect(0, 0, rangeCanvasAngle.width, rangeCanvasAngle.height);
 	ctx.fillStyle = 'magenta';
@@ -254,15 +184,36 @@ function CanvasRotateAngle(value) {
 	ctx.stroke();
 }
 
-StartCanvasRotateAngle();
+rangeAngle.oninput = function() {
+	viewingAngle = rangeAngle.value / 2;
+	let a = rangeAngle.value / 2 * Math.PI / 180;
+	let radrot = rangeCanvasAngle.height - (rangeCanvasAngle.height / 100) * 10;
 
+	if (radrot * 2 > rangeCanvasAngle.width) {
+		radrot = rangeCanvasAngle.width - (rangeCanvasAngle.width / 100) * 10;
+	}
 
-function rangefontSize(value) {
-	body.style.fontSize = value + 'px';
-	descriptionTextrea.style.fontSize = value + 'px';
-	///padding-top = font-size + padding-bottom, 
-	//30 -15
+	let xCStart = rangeCanvasAngle.width / 2;
+	let yCStart = rangeCanvasAngle.height;
+
+	ctx.clearRect(0, 0, rangeCanvasAngle.width, rangeCanvasAngle.height);
+	ctx.fillStyle = 'magenta';
+	ctx.beginPath();
+	ctx.moveTo(xCStart, yCStart);
+	ctx.lineTo(xCStart - Math.sin(a) * radrot, yCStart - Math.cos(a) * radrot);
+	ctx.stroke();
+
+	ctx.beginPath();
+	ctx.moveTo(xCStart, yCStart);
+	ctx.lineTo(xCStart + Math.sin(a) * radrot, yCStart - Math.cos(a) * radrot);
+	ctx.stroke();
 }
+
+rangeFontSize.oninput = function() {
+	body.style.fontSize = rangeFontSize.value + 'px';
+	descriptionTextrea.style.fontSize = rangeFontSize.value + 'px';
+};
+
 
 
 settingsIcon.addEventListener('click', function(e) {
@@ -275,5 +226,13 @@ settingsIcon.addEventListener('click', function(e) {
 	}
 });
 
-
-
+//open and close description
+descriptionMenu.addEventListener('click', function(e) {
+	if (MDcheck == 0) {
+		description.style.display = "table";
+		MDcheck = 1;
+	} else {
+		description.style.display = "none";
+		MDcheck = 0;
+	}
+});
